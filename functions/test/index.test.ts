@@ -6,6 +6,10 @@ import {Request, Response} from "express";
 
 FunctionsTest().mockConfig({});
 
+// TODO: Realtime Database トリガーの関数とテスト
+// TODO: Firestore トリガーの関数とテスト
+// TODO: Storage トリガーの関数とテスト
+
 describe("helloWorld function", () => {
   it("test", () => {
     const request = {};
