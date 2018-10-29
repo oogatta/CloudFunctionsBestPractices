@@ -1,5 +1,5 @@
 import * as FunctionsTest from "firebase-functions-test";
-import { test, helloWorld } from "../src";
+import helloWorld from "../../typescript/functions/helloWorld";
 import { expect } from "chai";
 import "mocha";
 import {Request, Response} from "express";
@@ -23,9 +23,9 @@ describe("helloWorld function", () => {
     helloWorld(request as Request, response as Response);
   });
 });
-
-describe("test function", () => {
-  it("should return 1.", () => {
-    expect(test()).to.equal(1);
-  });
-});
+//
+// describe("test function", () => {
+//   it("should return 1.", () => {
+//     expect(test()).to.equal(1);
+//   });
+// });

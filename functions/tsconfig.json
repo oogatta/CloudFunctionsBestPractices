@@ -9,6 +9,6 @@
   },
   "compileOnSave": true,
   "include": [
-    "src"
+    "typescript"
   ]
 }
