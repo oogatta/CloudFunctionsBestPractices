@@ -11,7 +11,7 @@ FunctionsTest().mockConfig({});
 // TODO: Storage トリガーの関数とテスト
 
 describe("helloWorld function", () => {
-  it("test", () => {
+  it("should say hello.", () => {
     const request = {};
     const response = {
       send: (body) => {
@@ -22,9 +22,3 @@ describe("helloWorld function", () => {
     helloWorld(request as Request, response as Response);
   });
 });
-//
-// describe("test function", () => {
-//   it("should return 1.", () => {
-//     expect(test()).to.equal(1);
-//   });
-// });
