@@ -7,7 +7,6 @@ import {Request, Response} from "express";
 FunctionsTest().mockConfig({});
 
 // TODO: Realtime Database トリガーの関数とテスト
-// TODO: dynamic import
 // TODO: Firestore トリガーの関数とテスト
 // TODO: Storage トリガーの関数とテスト
 
