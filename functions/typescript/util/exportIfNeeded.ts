@@ -4,6 +4,6 @@ function isFunctionCalled(functionName: string): Boolean {
 
 export default function exportIfNeeded(functionName: string, exports: any): void {
   if (isFunctionCalled(functionName)) {
-    exports.helloWorld = require(`../functions/${functionName}`).default;
+    exports[functionName] = require(`../functions/${functionName}`).default;
   }
 }
