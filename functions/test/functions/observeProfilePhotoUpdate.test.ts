@@ -10,18 +10,15 @@ import * as admin from "firebase-admin";
 
 import {CollectionReference, DocumentReference, Firestore} from "../lib/firestore";
 
-import observeCreateUser from "../../typescript/functions/observeCreateUser";
+import observeProfilePhotoUpdate from "../../typescript/functions/observeProfilePhotoUpdate";
 
-describe("observeCreateUser function", () => {
+describe("observeProfilePhotoUpdate function", () => {
   after(() => {
     test.cleanup();
   });
 
   it("should set another test document.", () => {
-    const wrappedObserveCreateUser = test.wrap(observeCreateUser);
-
-    const documentSnapshot = test.firestore
-      .makeDocumentSnapshot({ name: "Naohiro Oogatta" }, "users/oogatta");
+    const wrappedObserveProfilePhotoUpdate = test.wrap(observeProfilePhotoUpdate);
 
     const firestoreObject = new Firestore();
     sinon.stub(admin, "firestore")
@@ -29,25 +26,25 @@ describe("observeCreateUser function", () => {
 
     const testCollectionObject = new CollectionReference();
     sinon.stub(firestoreObject, "collection")
-      .withArgs("test")
+      .withArgs("users")
       .returns(testCollectionObject);
 
     const userIdDocObject = new DocumentReference();
-    sinon.stub(testCollectionObject, "doc")
+    const doc = sinon.stub(testCollectionObject, "doc")
       .returns(userIdDocObject);
 
-    const set = sinon.stub(userIdDocObject, "set");
+    const update = sinon.stub(userIdDocObject, "update");
 
-    wrappedObserveCreateUser(documentSnapshot, {
-      params: {
-        userId: "oogatta"
-      }
+    const objectMetadata = test.storage.makeObjectMetadata({
+      name: "user-profile-photos/oogatta",
+      contentType: "image/jpeg",
     });
 
-    expect(set.args[0][0]).to.deep.equal({
-      test: true,
-      name: "Naohiro Oogatta",
-      userId: "oogatta",
+    wrappedObserveProfilePhotoUpdate(objectMetadata);
+
+    expect(doc.args[0][0]).to.be.equal("oogatta");
+    expect(update.args[0][0]).to.deep.equal({
+      hasProfilePhoto: true,
     });
   });
 });
