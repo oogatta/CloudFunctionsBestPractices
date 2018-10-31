@@ -10,7 +10,7 @@ import * as admin from "firebase-admin";
 
 import {CollectionReference, DocumentReference, Firestore} from "../lib/firestore";
 
-import observeProfilePhotoUpdate from "../../typescript/functions/observeProfilePhotoUpdate";
+import observeProfilePhotoUpdate from "../../typescript/functions/observeProfilePhotoUpload";
 
 describe("observeProfilePhotoUpdate function", () => {
   after(() => {

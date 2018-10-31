@@ -1,5 +1,8 @@
 class PushNotification {
-  send(message: string): any {}
+  send(message: string): any {
+    // not implemented
+    return Promise.resolve();
+  }
 }
 
 const pushNotification = new PushNotification();

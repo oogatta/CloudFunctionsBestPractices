@@ -1,7 +1,9 @@
 import * as functions from "firebase-functions";
 
 import * as admin from "firebase-admin";
-admin.initializeApp();
+if (admin.apps.length === 0 ) {
+  admin.initializeApp();
+}
 
 import pushNotification from "../lib/pushNotification";
 
@@ -11,6 +13,7 @@ export default functions
   .ref("user-score/{userId}")
   .onUpdate((change, context) => {
     if (change.after.val().score - change.before.val().score >= 5) {
-      pushNotification.send("test")
+      return pushNotification.send("test")
     }
+    return 1;
   });
