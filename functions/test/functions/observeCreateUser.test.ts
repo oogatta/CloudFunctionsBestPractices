@@ -39,6 +39,8 @@ describe("observeCreateUser function", () => {
         userId: "oogatta"
       }
     });
+
+    expect(set.calledWith({test: true})).to.be.true;
   });
 });
 
