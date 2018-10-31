@@ -16,8 +16,10 @@ describe("observeCreateUser function", () => {
   });
 
   it("should set another test document.", () => {
-    const documentSnapshot = test.firestore.makeDocumentSnapshot({ name: "Naohiro Oogatta" }, "users/oogatta");
     const wrappedObserveCreateUser = test.wrap(observeCreateUser);
+
+    const documentSnapshot = test.firestore
+      .makeDocumentSnapshot({ name: "Naohiro Oogatta" }, "users/oogatta");
 
     const firestoreObject = new Firestore();
     sinon.stub(admin, "firestore")
@@ -40,7 +42,11 @@ describe("observeCreateUser function", () => {
       }
     });
 
-    expect(set.calledWith({test: true})).to.be.true;
+    expect(set.args[0][0]).to.deep.equal({
+      test: true,
+      name: "Naohiro Oogatta",
+      userId: "oogatta",
+    });
   });
 });
 
