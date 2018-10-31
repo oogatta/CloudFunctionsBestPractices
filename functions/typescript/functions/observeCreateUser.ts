@@ -1,7 +1,6 @@
 import * as functions from "firebase-functions";
 
 import * as admin from "firebase-admin";
-import {document} from "firebase-functions/lib/providers/firestore";
 admin.initializeApp();
 admin.firestore().settings({ timestampsInSnapshots: true });
 
