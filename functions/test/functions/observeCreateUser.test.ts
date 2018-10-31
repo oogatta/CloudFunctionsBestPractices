@@ -15,7 +15,7 @@ describe("observeCreateUser function", () => {
     test.cleanup();
   });
 
-  it("should return 1.", () => {
+  it("should set another test document.", () => {
     const documentSnapshot = test.firestore.makeDocumentSnapshot({ name: "Naohiro Oogatta" }, "users/oogatta");
     const wrappedObserveCreateUser = test.wrap(observeCreateUser);
 
